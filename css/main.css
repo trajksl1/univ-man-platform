@@ -1,0 +1,33 @@
+.main-page {
+    margin-top: 50px;
+}
+
+.thumb {
+    height: 100px;
+    margin: -0.5em 1em 1.5em 0;
+    padding-bottom: 1em;
+    width: 100px;
+}
+
+.done {
+    text-decoration: line-through;
+
+}
+
+.top-buffer {
+    margin-top: 10px;
+}
+
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 400px;
+    height: 300px
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
