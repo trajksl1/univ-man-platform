@@ -14,6 +14,7 @@ var fs = require("fs");
 
 var JS_APP = [
   'app/ump.module.js',
+  'app/nav/**/*.js',
   'app/dashboard/**/*.js',
   'app/student/**/*.js',
   'app/professor/**/*.js',

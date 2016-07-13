@@ -2,7 +2,8 @@
   'use strict';
   angular
     .module('ump')
-    .config(config);
+    .config(config)
+    .run(initialize);
 
   config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -14,6 +15,17 @@
         controller: 'CourseController',
         controllerAs: 'cCtl'
       });
+  }
+
+  initialize.$inject = ['NavigationService'];
+
+  function initialize(NavigationService) {
+    NavigationService.registerPage({
+      name: 'Courses',
+      url: '#/course',
+      state: 'course',
+      order: 2
+    });
   }
 
 }(angular));

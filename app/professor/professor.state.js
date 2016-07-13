@@ -16,11 +16,16 @@
         controllerAs: 'pCtl'
       });
   }
-  
-  initialize.$inject=[];
-  
-  function initialize(){
-    
+
+  initialize.$inject = ['NavigationService'];
+
+  function initialize(NavigationService) {
+    NavigationService.registerPage({
+      name: 'Professors',
+      url: '#/professor',
+      state: 'professor',
+      order: 3
+    });
   }
 
 }(angular));
