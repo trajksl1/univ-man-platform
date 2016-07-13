@@ -2,20 +2,23 @@
     <form name='frm' ng-submit="sCtl.addStudent() ">
 
         <div class="form-group">
-            <label>Student Name</label>
-            <input type="text" class="form-control" placeholder="Name" ng-model="sCtl.student.name" required/>
+            <label>{{'student.name' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'student.name'  | translate}}"
+                   ng-model="sCtl.student.name" required/>
         </div>
         <div class="form-group">
-            <label>Student SurName</label>
-            <input type="text" class="form-control" placeholder="SurName" ng-model="sCtl.student.lastName" required/>
+            <label>{{'student.lastName' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'student.lastName' | translate}}"
+                   ng-model="sCtl.student.lastName" required/>
         </div>
         <div class="form-group">
-            <label>Index</label>
-            <input type="text" class="form-control" placeholder="Index" ng-model="sCtl.student.index" required/>
+            <label>{{'student.Index' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'student.Index' | translate}}"
+                   ng-model="sCtl.student.index" required/>
         </div>
 
-        <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
-        <div class="btn btn-default top-buffer" ng-click="sCtl.cancelEdit()"> Cancel</div>
+        <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> {{'student.Save' | translate}}</button>
+        <div class="btn btn-default top-buffer" ng-click="sCtl.cancelEdit()"> {{'student.Cancel' | translate}}</div>
 
 
     </form>
@@ -47,14 +50,15 @@
                 <td>{{student.lastName}}</td>
                 <td>{{student.index}}</td>
                 <td>
-                    <button type="button" class="btn btn-default btn-xs" ng-click="sCtl.userUpdate(student)">Edit
+                    <button type="button" class="btn btn-default btn-xs" ng-click="sCtl.userUpdate(student)">
+                        {{'student.Edit' | translate}}
                     </button>
                     <button type="button" class="btn btn-danger btn-xs" ng-click="sCtl.openConfirmationModal(student)">
-                        Delete
+                        {{'student.Delete' | translate}}
                     </button>
                     <a class="btn btn-default btn-xs"
                        ui-sref="studentEnrollment({ studentId: student.index })">
-                        Enroll
+                        {{'student.Enroll' | translate}}
                     </a>
 
 

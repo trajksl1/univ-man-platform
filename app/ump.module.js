@@ -1,4 +1,4 @@
-(function(angular) {
+(function (angular) {
   'use strict';
   angular
     .module('ump', [
@@ -7,11 +7,13 @@
       'smart-table',
       'ngResource',
       'ngSanitize',
-      'ui.bootstrap',       
+      'ui.bootstrap',
       'ui.bootstrap.datetimepicker',
       'ngStorage',
       'pascalprecht.translate',
-      'toastr'
+      'toastr',
+      'pascalprecht.translate',
+      'ngCookies'
     ])
     .config(config)
     .run(run);
