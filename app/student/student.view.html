@@ -1,0 +1,73 @@
+===={{sCtl.student}}===
+
+<div>
+
+    <form name='frm' ng-submit="sCtl.addStudent() ">
+
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" class="form-control" placeholder="Name" ng-model="sCtl.student.name" required/>
+        </div>
+        <div class="form-group">
+            <label>Student SurName</label>
+            <input type="text" class="form-control" placeholder="SurName" ng-model="sCtl.student.lastName" required/>
+        </div>
+        <div class="form-group">
+            <label>Index</label>
+            <input type="text" class="form-control" placeholder="Index" ng-model="sCtl.student.index" required/>
+        </div>
+
+        <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
+        <div class="btn btn-default top-buffer" ng-click="sCtl.cancelEdit()"> Cancel</div>
+
+    </form>
+
+    <div>
+
+
+        <table class="table table-striped top-buffer" st-pipe="sCtl.callServer" st-table="sCtl.displayed">
+
+            <thead>
+            <tr>
+                <th st-sort="name">Name</th>
+                <th st-sort="lastName">SurName</th>
+                <th st-sort="index">Index</th>
+                <th>Action</th>
+
+
+            </tr>
+            <tr>
+                <th><input st-search="name" class="form-control"/></th>
+                <th><input st-search="lastName" class="form-control"/></th>
+                <th><input st-search="index" class="form-control"/></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="student in sCtl.displayed">
+                <td>{{student.name}}</td>
+                <td>{{student.lastName}}</td>
+                <td>{{student.index}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="sCtl.userUpdate(student)">Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="sCtl.openConfirmationModal(student)"> Delete
+                    </button>
+
+                </td>
+            </tr>
+
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="2" colspan="5">
+                </td>
+            </tr>
+            </tfoot>
+
+
+        </table>
+
+    </div>
+
+
+</div>

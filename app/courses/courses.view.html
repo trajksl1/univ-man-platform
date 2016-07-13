@@ -1,0 +1,123 @@
+<div>
+
+    <form name='frm' ng-submit="cCtl.addCourse() ">
+        <div class="form-group">
+            <label>Course Name</label>
+            <input type="text" class="form-control" placeholder="Course Name" ng-model="cCtl.course.name"
+                   style="width: 800px;" required/>
+        </div>
+
+
+        <div class="form-group">
+            <label>Course Id</label>
+            <input type="text" class="form-control" placeholder="Course Id" ng-model="cCtl.course.id"
+                   style="width: 800px;" required/>
+
+        </div>
+
+
+        <div class="form-group">
+            <label>Course Prerequisites</label>
+            <ui-select multiple ng-model="cCtl.course.prerequisites" close-on-select="false" style="width: 800px;"
+                       title="Choose prerequisites ">
+                <ui-select-match placeholder="Select course prerequisites...">
+                    {{$item.name}} &lt;{{$item.id}}&gt;
+                </ui-select-match>
+                <ui-select-choices
+                        repeat="item in (cCtl.listOfCourses| filter:$select.search ) track by item.id "
+                        position="auto">
+                    <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    <small>
+                        id: {{item.id}}
+                    </small>
+
+                </ui-select-choices>
+            </ui-select>
+
+
+        </div>
+
+        <div class="form-group">
+            <label>Course Professors</label>
+            <ui-select multiple ng-model="cCtl.course.professors"
+                       close-on-select="false" style="width: 800px;"
+                       title="Choose course professors " required>
+                <ui-select-match placeholder="Select course professors...">
+                    {{$item.id}}
+                </ui-select-match>
+                <ui-select-choices
+                        repeat="item in (cCtl.listOfProfessors | filter:$select.search) track by item.id"
+                        position="auto">
+                    <div ng-bind-html="item.lastName | highlight: $select.search"></div>
+                    <small>
+                        name: {{item.name}}
+                        UserName: <span ng-bind-html="''+item.id | highlight: $select.search"></span>
+                    </small>
+                </ui-select-choices>
+            </ui-select>
+
+        </div>
+
+        <button type="submit" ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
+        <div class="btn btn-default top-buffer" ng-click="cCtl.cancelEdit()"> Cancel</div>
+
+    </form>
+
+
+    <div>
+
+
+        <table class="table table-striped top-buffer" st-pipe="cCtl.callServer" st-table="cCtl.displayed">
+
+            <thead>
+            <tr>
+                <th st-sort="name">Course Name</th>
+                <th st-sort="id">Course Id</th>
+                <th>Prerequisits</th>
+                <th>Professors</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <th><input st-search="name" class="form-control"/></th>
+                <th><input st-search="id" class="form-control"/></th>
+                <th><input st-search="cCtl.prerequisiteSearch" class="form-control"/></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="course in cCtl.displayed">
+                <td>{{course.name}}</td>
+                <td>{{course.id}}</td>
+                <td>
+                    <div ng-repeat="item in course.prerequisites"> {{item.name}}</div>
+                </td>
+
+                <td>
+                    <div ng-repeat="item in course.professors"> {{item.lastName}}</div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="cCtl.courseUpdate(course)">Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="cCtl.courseDelete(course)">
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
+
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="5" colspan="6">
+                </td>
+            </tr>
+            </tfoot>
+
+
+        </table>
+
+    </div>
+
+
+</div>

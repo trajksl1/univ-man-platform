@@ -1,11 +1,6 @@
 /**
  *
- * Developed as a part of a project founded by Sorsix
- *
- * @Authors
- *  Tomce Delev
- *  Dragan Sahpaski
- *  Riste Stojanov
+ * dev
  *
  **/
 var gulp = require('gulp');
@@ -19,7 +14,10 @@ var fs = require("fs");
 
 var JS_APP = [
   'app/ump.module.js',
-  'app/dashboard/**/*.js'
+  'app/dashboard/**/*.js',
+  'app/student/**/*.js',
+  'app/professor/**/*.js',
+  'app/courses/**/*.js'
 ];
 
 var TEMPLATES_SRC = [
@@ -55,7 +53,6 @@ var CSS_LIB = [
   'bower_components/angular-ui-grid/ui-grid.css',
   'bower_components/angular-bootstrap/ui-bootstrap-csp.css'
 ];
-
 
 
 var JS_LIB = [
@@ -100,7 +97,6 @@ var JS_LIB = [
 ];
 
 
-
 /**
  *   The location of the resources for deploy
  */
@@ -108,7 +104,7 @@ var DESTINATION = 'dest/';
 
 var FONTS_DESTINATION = 'fonts/';
 /**
- * The single page initial html file. It will be altered 
+ * The single page initial html file. It will be altered
  * by this script.
  */
 var INDEX_FILE = 'index.html';
@@ -121,55 +117,55 @@ var MODULE_NAME = 'ump';
  */
 var API_URL = 'http://localhost:8080/servlet-showcase/api';
 /**
- * Route to which the API calls will be mapped 
+ * Route to which the API calls will be mapped
  */
 var API_ROUTE = '/api';
 
 /**
- * Task for concatenation of the js libraries used 
- * in this project 
+ * Task for concatenation of the js libraries used
+ * in this project
  */
-gulp.task('concat_js_lib', function() {
+gulp.task('concat_js_lib', function () {
   return gulp.src(JS_LIB) // which js files
     .pipe(concat('lib.js')) // concatenate them in lib.js
     .pipe(gulp.dest(DESTINATION)); // save lib.js in the DESTINATION folder
 });
 
 /**
- * Task for concatenation of the css libraries used 
- * in this project 
+ * Task for concatenation of the css libraries used
+ * in this project
  */
-gulp.task('concat_css_lib', function() {
+gulp.task('concat_css_lib', function () {
   return gulp.src(CSS_LIB) // which css files
     .pipe(concat('lib.css')) // concat them in lib.css
     .pipe(gulp.dest(DESTINATION)); // save lib.css in the DESTINATION folder
 });
 
 /**
- * Task for concatenation of the js code defined  
- * in this project 
+ * Task for concatenation of the js code defined
+ * in this project
  */
-gulp.task('concat_js_app', function() {
+gulp.task('concat_js_app', function () {
   return gulp.src(JS_APP)
     .pipe(concat('src.js'))
     .pipe(gulp.dest(DESTINATION));
 });
 
 /**
- * Task for concatenation of the css code defined 
- * in this project 
+ * Task for concatenation of the css code defined
+ * in this project
  */
-gulp.task('concat_css_app', function() {
+gulp.task('concat_css_app', function () {
   return gulp.src(CSS_APP)
     .pipe(concat('app.css'))
     .pipe(gulp.dest(DESTINATION));
 });
 
 /**
- * Task for concatenation of the html templates defined 
- * in this project 
+ * Task for concatenation of the html templates defined
+ * in this project
  */
-gulp.task('templates', function() {
+gulp.task('templates', function () {
   return gulp.src(TEMPLATES_SRC) // which html files
     .pipe(
       templateCache('templates.js', { // compile them as angular templates 
@@ -180,16 +176,16 @@ gulp.task('templates', function() {
 });
 
 /**
- * Task for adding the revision as parameter   
+ * Task for adding the revision as parameter
  * for cache braking
  */
-gulp.task('cache-break', function() {
+gulp.task('cache-break', function () {
   return gulp.src(INDEX_FILE) // use the INDEX_FILE as source
     .pipe(rev()) // append the revision to all resources
     .pipe(gulp.dest('.')); // save the modified file at the same destination
 });
 
-gulp.task('fonts', function() {
+gulp.task('fonts', function () {
   return gulp.src(FONTS_LIB)
     .pipe(gulp.dest(FONTS_DESTINATION));
 });
@@ -203,23 +199,23 @@ var tasks = [
   'templates'
 ];
 
-gulp.task('build', tasks, function() {
+gulp.task('build', tasks, function () {
   gulp.start('cache-break');
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
   gulp.watch('app/**/**.js', ['concat_js_app', 'cache-break']);
   gulp.watch(TEMPLATES_SRC, ['templates', 'cache-break']);
   gulp.watch('css/**/**.css', ['concat_css_app', 'cache-break']);
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   connect.server({
     port: 8000,
     livereload: true,
-    middleware: function(connect, opt) {
+    middleware: function (connect, opt) {
       return [
-        (function() {
+        (function () {
           var url = require('url');
           var proxy = require('proxy-middleware');
           var options = url.parse(API_URL);

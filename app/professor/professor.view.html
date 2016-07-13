@@ -1,0 +1,75 @@
+<div>
+
+    <form name='frm' ng-submit="pCtl.addProfessor() ">
+
+        <div class="form-group">
+            <label>Professor Name</label>
+            <input type="text" class="form-control" placeholder="Name" ng-model="pCtl.professor.name" required/>
+        </div>
+        <div class="form-group">
+            <label>Professor SurName</label>
+            <input type="text" class="form-control" placeholder="SurName" ng-model="pCtl.professor.lastName" required/>
+        </div>
+        <div class="form-group">
+            <label>Professor UserName</label>
+            <input type="text" class="form-control" placeholder="UserName"
+                   ng-model="pCtl.professor.id" required
+                   ng-minlength="1" ng-maxlength="10"
+                   ng-disabled="pCtl.isEdit"/>
+        </div>
+
+        <button type="submit" ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
+        <div class="btn btn-default top-buffer" ng-click="pCtl.cancelEdit()"> Cancel</div>
+
+    </form>
+
+    <div>
+
+
+        <table class="table table-striped top-buffer" st-pipe="pCtl.callServer" st-table="pCtl.displayed">
+
+            <thead>
+            <tr>
+                <th st-sort="name">Name</th>
+                <th st-sort="lastName">SurName</th>
+                <th st-sort="id">UserName</th>
+                <th>Action</th>
+
+
+            </tr>
+            <tr>
+                <th><input st-search="name" class="form-control"/></th>
+                <th><input st-search="lastName" class="form-control"/></th>
+                <th><input st-search="id" class="form-control"/></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="professor in pCtl.displayed">
+                <td>{{professor.name}}</td>
+                <td>{{professor.lastName}}</td>
+                <td>{{professor.id}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="pCtl.professorUpdate(professor)">Edit
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="pCtl.professorDelete(professor)">
+                        Delete
+                    </button>
+
+                </td>
+            </tr>
+
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="2" colspan="5">
+                </td>
+            </tr>
+            </tfoot>
+
+
+        </table>
+
+    </div>
+
+
+</div>
