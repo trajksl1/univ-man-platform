@@ -1,7 +1,4 @@
-===={{sCtl.student}}===
-
 <div>
-
     <form name='frm' ng-submit="sCtl.addStudent() ">
 
         <div class="form-group">
@@ -19,6 +16,7 @@
 
         <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
         <div class="btn btn-default top-buffer" ng-click="sCtl.cancelEdit()"> Cancel</div>
+
 
     </form>
 
@@ -51,8 +49,14 @@
                 <td>
                     <button type="button" class="btn btn-default btn-xs" ng-click="sCtl.userUpdate(student)">Edit
                     </button>
-                    <button type="button" class="btn btn-danger btn-xs" ng-click="sCtl.openConfirmationModal(student)"> Delete
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="sCtl.openConfirmationModal(student)">
+                        Delete
                     </button>
+                    <a class="btn btn-default btn-xs"
+                       ui-sref="studentEnrollment({ studentId: student.index })">
+                        Enroll
+                    </a>
+
 
                 </td>
             </tr>

@@ -11,7 +11,7 @@
   function NavigationControllerFn(NavigationService, $state) {
     var nCtl = this;
     nCtl.pages = NavigationService.getPage();
-    nCtl.stateCtl=$state;
+    nCtl.stateCtl=$state;0
 
 
   }

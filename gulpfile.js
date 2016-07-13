@@ -18,7 +18,8 @@ var JS_APP = [
   'app/dashboard/**/*.js',
   'app/student/**/*.js',
   'app/professor/**/*.js',
-  'app/courses/**/*.js'
+  'app/courses/**/*.js',
+  'app/enrollment/**/*.js'
 ];
 
 var TEMPLATES_SRC = [

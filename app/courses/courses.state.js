@@ -5,7 +5,7 @@
     .config(config)
     .run(initialize);
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider'];
+  config.$inject = ['$stateProvider', '$urlRouterProvider', ];
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider

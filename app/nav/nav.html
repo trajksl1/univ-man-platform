@@ -15,7 +15,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li ng-repeat="page in nCtl.pages"
+                <li ng-repeat="page in nCtl.pages | orderBy: 'order'"
                     ng-class="{active: nCtl.stateCtl.includes(page.state)}">
                     <a ng-href="{{page.url}}">
                         {{page.name}}
