@@ -1,2 +1,108 @@
-==== StudentId : {{seCtl.id}}===
+===={{seCtl.course.professors}}====
 
+
+<div>
+    <div student="seCtl.student"></div>
+
+    <form name='frm' ng-submit="seCtl.addEnrollment() ">
+
+
+        <div>
+            <label>Course</label>
+            <ui-select ng-model="seCtl.enroll.course">
+
+                <ui-select-match>
+                    [{{$select.selected.id}}] {{$select.selected.name}}
+                </ui-select-match>
+
+                <ui-select-choices repeat="item in ( seCtl.listOfCourses | filter: $select.search)">
+                    {{item.name}}
+                </ui-select-choices>
+
+            </ui-select>
+
+        </div>
+
+        <div>
+            <label>Professor</label>
+            <ui-select ng-model="seCtl.enroll.courseProfessors">
+
+                <ui-select-match>
+                    [{{$select.selected.id}}]
+                </ui-select-match>
+
+                <ui-select-choices repeat="item in ( seCtl.enroll.course.professors | filter: $select.search)">
+                    <div ng-bind-html="item.lastName | highlight: $select.search"></div>
+                    <small>
+                        name: {{item.name}}
+                        UserName: <span ng-bind-html="''+item.id | highlight: $select.search"></span>
+                    </small>
+
+                </ui-select-choices>
+
+            </ui-select>
+
+        </div>
+
+        <button type="submit" ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
+        <div class="btn btn-default top-buffer" ng-click="seCtl.cancelEdit()"> Cancel</div>
+
+
+    </form>
+
+    <div>
+
+
+        <table class="table table-striped top-buffer" st-pipe="seCtl.callServer" st-table="seCtl.displayed">
+
+            <thead>
+            <tr>
+                <th st-sort="course.name">Course</th>
+                <th st-sort="courseProfessors">SurName</th>
+                <th st-sort="grade">Grade</th>
+                <th>Action</th>
+
+
+            </tr>
+            <tr>
+                <th><input st-search="course" class="form-control"/></th>
+                <th><input st-search="courseProfessors" class="form-control"/></th>
+                <th><input st-search="grade" class="form-control"/></th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="enroll in seCtl.displayed">
+                <td>{{enroll.course.name}}</td>
+                <td><!--{{enroll.courseProfessors.lastName}}-->
+                    <div ng-bind-html="enroll.courseProfessors.lastName "></div>
+                    <small>
+                        {{enroll.courseProfessors.name}}
+                    </small>
+
+                </td>
+                <td>{{enroll.grade}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="seCtl.openGradeModal(enroll)">Grade
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="seCtl.openConfirmationModal(enroll)">
+                        Delete
+                    </button>
+
+
+                </td>
+            </tr>
+
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="2" colspan="5">
+                </td>
+            </tr>
+            </tfoot>
+
+
+        </table>
+
+    </div>
+
+</div>

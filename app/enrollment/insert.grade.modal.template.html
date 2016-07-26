@@ -1,0 +1,27 @@
+<div>
+    <div class="modal-header">Add grade</div>
+    <form name='frm' ng-submit="gCtl.addGrade()">
+
+        <div class="modal-body">
+            <div class='row'>
+                <div class='col-md-6'>
+
+                    <h3 class="text-left">
+                        {{enroll.course.name}}
+                    </h3>
+
+                </div>
+                <div student="enroll.student" class='col-md-6'></div>
+            </div>
+            <div class="form-group">
+                <label>Insert grade</label>
+                <input type="number" class="form-control" name="grade" placeholder="Add grade" ng-model="gCtl.grade"
+                       min="6" max="10" required/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -13,9 +13,13 @@
       getAllCourses: getAllCoursesFn,
       adUpdateCourse: adUpdateCourseFn,
       getPaged: getPagedFn,
-      deleteCourse: deleteCourseFn
+      findCourse: findCourseFn,
+      deleteCourse: deleteCourseFn,
+      
+
 
     };
+
 
     function getPagedFn(start,
                         number,
