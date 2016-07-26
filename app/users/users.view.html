@@ -1,0 +1,90 @@
+<div>
+    <form class="form-horizontal" name='frm' ng-submit="aCtl.addUser()">
+        <div class="alert alert-danger" ng-show="aCtl.exception">
+            {{aCtl.exception}}
+        </div>
+        <div class="alert alert-success" ng-show="aCtl.message">
+            {{aCtl.message}}
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">UserName</label>
+            <div class="col-sm-10">
+                <input type="text"
+                       ng-disabled="aCtl.user.$saved"
+                       class="form-control" placeholder="UserName" ng-model="aCtl.user.username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
+                       ng-model="aCtl.user.pass">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Role</label>
+            <label class="radio-inline">
+                <input type="radio" name="option" ng-model="aCtl.user.role" value="Student"> Student
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="option" ng-model="aCtl.user.role" value="Professor"> Professor
+            </label>
+        </div>
+        <div class="form-group" ng-if="aCtl.subjects">
+            <label class="col-sm-2 control-label">{{aCtl.subjectLabel}}</label>
+            <ui-select ng-model="aCtl.user.subject" class="col-sm-10">
+
+                <ui-select-match>
+                    {{$select.selected.name}} {{$select.selected.lastName}}
+                </ui-select-match>
+
+                <ui-select-choices repeat="item in ( aCtl.subjects | filter: $select.search)">
+                    {{item.name}} {{item.lastName}}
+                </ui-select-choices>
+
+            </ui-select>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" ng-disabled='frm.$invalid' class="btn btn-default">Save</button>
+            </div>
+
+        </div>
+    </form>
+    <div>
+        <table class="table table-striped top-buffer" st-pipe="aCtl.callServer" st-table="aCtl.displayed">
+            <thead>
+            <tr>
+                <th st-sort="username">Username</th>
+                <th st-sort="role">Role</th>
+                <th st-sort="subject.name">Subject</th>
+                <th>Action</th>
+            </tr>
+            <tr>
+                <th><input st-search="username" class="form-control"/></th>
+                <th><input st-search="role" class="form-control"/></th>
+                <th><input st-search="subject.name" class="form-control"/></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="user in aCtl.displayed">
+                <td>{{user.username}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.subject.name}} {{user.subject.lastName}}</td>
+                <td>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="aCtl.editUser(user)">
+                        Edit
+                    </button>
+                </td>
+            </tr>
+            <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-items-by-page="10" colspan="5">
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

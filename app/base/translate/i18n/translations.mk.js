@@ -11,7 +11,8 @@ umpTranslations.mk = {
     UMP: 'УМП',
     Students: 'Студенти',
     Courses: 'Курсеви',
-    Professors: 'Професори'
+    Professors: 'Професори',
+    users: 'Корисници'
 
   },
   student: {

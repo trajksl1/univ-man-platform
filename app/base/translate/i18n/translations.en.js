@@ -10,7 +10,8 @@ umpTranslations.en = {
     UMP: 'UMP',
     Students: 'Students',
     Courses: 'Courses',
-    Professors: 'Professors'
+    Professors: 'Professors', 
+    users: 'Users'
 
   },
   student: {

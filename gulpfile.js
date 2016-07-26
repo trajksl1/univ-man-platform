@@ -17,10 +17,11 @@ var JS_APP = [
   'app/base/**/*.js',
   'app/directives/**/*.js',
   'app/dashboard/**/*.js',
-  'app/student/**/*.js',
-  'app/professor/**/*.js',
   'app/courses/**/*.js',
-  'app/enrollment/**/*.js'
+  'app/enrollment/**/*.js',
+  'app/professor/**/*.js',
+  'app/student/**/*.js',
+  'app/users/**/*.js'
 ];
 
 var TEMPLATES_SRC = [
