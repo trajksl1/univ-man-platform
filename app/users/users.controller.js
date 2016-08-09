@@ -5,16 +5,17 @@
     .module('ump')
     .controller('UserController', UserControllerFn);
 
-  UserControllerFn.$inject = ['$scope', 'UserService', 'StudentService', 'ProfessorService'];
+  UserControllerFn.$inject = ['$scope', 'UserService', 'StudentService', 'ProfessorService', 'user'];
 
   /* @ngInject */
-  function UserControllerFn($scope, UserService, StudentService, ProfessorService) {
+  function UserControllerFn($scope, UserService, StudentService, ProfessorService, user) {
     var aCtl = this;
     aCtl.addUser = addUserFn;
     aCtl.callServer = callServerFn;
     aCtl.editUser = editUserFn;
     aCtl.listOfStudents = StudentService.getAllStudents();
     aCtl.listOfProfessors = ProfessorService.getAllProfessors();
+
 
     aCtl.subjects = null;
 

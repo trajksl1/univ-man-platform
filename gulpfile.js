@@ -97,6 +97,7 @@ var JS_LIB = [
   'bower_components/angular-smart-table/dist/smart-table.js',
   'bower_components/angular-bootstrap/ui-bootstrap.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+  'bower_components/angular-cookies/angular-cookies.js',
   'bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js'
 ];
 

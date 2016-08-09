@@ -13,10 +13,22 @@
     return {
       getListOfUsers: getListOfUsersFn,
       addUpdateUser: addUpdateUserFn,
-      getPaged: getPagedFn
+      getPaged: getPagedFn,
+      findByUsername: findByUsernameFn
 
 
     };
+
+    function findByUsernameFn(username) {
+      var user = existingUserFn({
+        username: username
+      });
+      if (user === false) {
+        return null;
+      } else {
+        return user;
+      }
+    }
 
     function getListOfUsersFn() {
       return $localStorage.listOfUsers;
@@ -35,6 +47,7 @@
           result = e;
         }
       });
+
       return result;
 
     }

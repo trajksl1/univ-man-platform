@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav navbar-right" ng-controller="LogOutController as loCtl">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false"> {{$root.user.subject.name}} <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a></a></li>
+            <li><a ng-click="loCtl.logOutUser()">Log Out</a></li>
+        </ul>
+    </li>
+
+</ul>

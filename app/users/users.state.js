@@ -9,12 +9,13 @@
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('users', {
+      .state('authenticated.users', {
         url: '/users',
         templateUrl: '/app/users/users.view.html',
         controller: 'UserController',
         controllerAs: 'aCtl'
       });
+    console.log('registered users')
   }
 
   initialize.$inject = ['NavigationService'];
@@ -22,8 +23,8 @@
   function initialize(NavigationService) {
     NavigationService.registerPage({
       name: 'users',
-      url: '#/users',
-      state: 'users',
+      url: '#/auth/users',
+      state: 'authenticated.users',
       order: 4
     });
   }

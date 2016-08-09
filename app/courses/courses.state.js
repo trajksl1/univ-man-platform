@@ -5,11 +5,11 @@
     .config(config)
     .run(initialize);
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider', ];
+  config.$inject = ['$stateProvider', '$urlRouterProvider',];
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('course', {
+      .state('authenticated.course', {
         url: '/course',
         templateUrl: '/app/courses/courses.view.html',
         controller: 'CourseController',
@@ -22,8 +22,8 @@
   function initialize(NavigationService) {
     NavigationService.registerPage({
       name: 'Courses',
-      url: '#/course',
-      state: 'course',
+      url: '#/auth/course',
+      state: 'authenticated.course',
       order: 2
     });
   }

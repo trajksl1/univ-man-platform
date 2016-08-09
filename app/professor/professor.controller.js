@@ -18,6 +18,8 @@
     pCtl.professorDelete = professorDeleteFn;
     pCtl.ListOfProfessors = ProfessorService.getAllProfessors;
     pCtl.isEdit = false;
+    
+
 
     function addProfessorFn() {
       var item = pCtl.professor;

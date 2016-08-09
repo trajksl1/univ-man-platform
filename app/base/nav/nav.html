@@ -25,7 +25,16 @@
                 </li>
             </ul>
 
-            <ng-include src="'app/base/translate/translate.view.html'"></ng-include>
+            <ng-include class="navbar-right" src="'app/base/translate/translate.view.html'"></ng-include>
+
+            <ng-include ng-show="$root.user" class="navbar-right" src="'app/base/logOut/logOut.view.html'"></ng-include>
+
+            <p ng-hide="$root.user" class="navbar-right">
+                <a ui-sref="login()" class="btn btn-default navbar-btn">Log In
+                </a>
+            </p>
+
+
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

@@ -21,6 +21,7 @@
     cCtl.courseUpdate = courseUpdateFn;
     cCtl.courseDelete = courseDeleteFn;
     cCtl.prerequisiteSearch = prerequisiteSearchFn;
+    var signedValue = true;
 
 
     function addCourseFn() {

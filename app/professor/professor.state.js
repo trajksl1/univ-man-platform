@@ -9,7 +9,7 @@
 
   function config($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('professor', {
+      .state('authenticated.professor', {
         url: '/professor',
         templateUrl: '/app/professor/professor.view.html',
         controller: 'ProfessorController',
@@ -22,8 +22,8 @@
   function initialize(NavigationService) {
     NavigationService.registerPage({
       name: 'Professors',
-      url: '#/professor',
-      state: 'professor',
+      url: '#/auth/professor',
+      state: 'authenticated.professor',
       order: 3
     });
   }
