@@ -3,7 +3,7 @@
 
     angular
       .module('ump')
-      .factory('EnrollmentService', EnrollmentServiceFn);
+      .factory('EnrollmentLocalService', EnrollmentServiceFn);
 
     EnrollmentServiceFn.$inject = ['$localStorage'];
 

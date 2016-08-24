@@ -9,6 +9,7 @@
       'ngSanitize',
       'ui.bootstrap',
       'ui.bootstrap.datetimepicker',
+      'ui.calendar',
       'ngStorage',
       'pascalprecht.translate',
       'toastr',

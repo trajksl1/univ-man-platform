@@ -10,13 +10,13 @@
             <label>Professor SurName</label>
             <input type="text" class="form-control" placeholder="SurName" ng-model="pCtl.professor.lastName" required/>
         </div>
-        <div class="form-group">
-            <label>Professor UserName</label>
-            <input type="text" class="form-control" placeholder="UserName"
-                   ng-model="pCtl.professor.id" required
-                   ng-minlength="1" ng-maxlength="10"
-                   ng-disabled="pCtl.isEdit"/>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label>Professor UserName</label>-->
+            <!--<input type="text" class="form-control" placeholder="UserName"-->
+                   <!--ng-model="pCtl.professor.userName" required-->
+                   <!--ng-minlength="1" ng-maxlength="10"-->
+                   <!--ng-disabled="pCtl.isEdit"/>-->
+        <!--</div>-->
 
         <button type="submit" ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
         <div class="btn btn-default top-buffer" ng-click="pCtl.cancelEdit()"> Cancel</div>
@@ -48,7 +48,7 @@
             <tr ng-repeat="professor in pCtl.displayed">
                 <td>{{professor.name}}</td>
                 <td>{{professor.lastName}}</td>
-                <td>{{professor.id}}</td>
+                <td>{{professor.user.username}}</td>
                 <td>
                     <button type="button" class="btn btn-default btn-xs" ng-click="pCtl.professorUpdate(professor)">Edit
                     </button>

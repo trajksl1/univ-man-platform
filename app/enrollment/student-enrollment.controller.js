@@ -28,18 +28,12 @@
         var pagination = tableState.pagination;
 
         var start = pagination.start || 0;
-        var number = pagination.number || 10;
+        var number = pagination.number || 1000;
 
-        var result = EnrollmentService.getPaged(
-          start,
-          number,
-          tableState.search.predicateObject,
-          tableState.sort.predicate,
-          tableState.sort.reverse
-        );
-
-        seCtl.displayed = result.data;
-        tableState.pagination.numberOfPages = result.numberOfPages;
+        var result = EnrollmentService.getEnrollmentsByStudent(seCtl.student.id);
+        
+        seCtl.displayed = result;
+        tableState.pagination.numberOfPages = 1;
       }
 
       function openGradeModalFn(enroll) {
@@ -63,13 +57,15 @@
       function openConfirmationModalFn(enroll) {
         var modalScope = $scope.$new(true);
         modalScope.enroll = enroll;
+        console.log(enroll.id);
+
+
         var modalInstance = $uibModal.open({
           scope: modalScope,
           templateUrl: 'app/enrollment/delete.confirmation.modal.template.html',
-          controller: 'DeleteConfirmationModalController',
+          controller: 'DeleteEnrollmentConfirmationModalController',
           controllerAs: 'cdCtl',
-          size: 'lg',
-
+          size: 'lg'
         });
 
         modalInstance.result.then(function () {
@@ -86,12 +82,26 @@
       }
 
       function addEnrollmentFn() {
-        var result = seCtl.enroll;
-        result.student = seCtl.student;
-        EnrollmentService.addUpdateEnroll(result);
-        seCtl.enroll = {};
-        seCtl.callServer(seCtl.tableCtl.tableState(), seCtl.tableCtl);
+        try {
+          seCtl.message = null;
+          seCtl.exeption = null;
+          EnrollmentService.addUpdateEnroll(seCtl.enroll, successCallback, errorCallback);
+          var result = seCtl.enroll;
+          result.student = seCtl.student;
+        }
+        catch (ex) {
+          seCtl.exeption = ex.message;
+        }
+      }
 
+      function successCallback() {
+        seCtl.callServer(seCtl.tableCtl.tableState(), seCtl.tableCtl);
+        seCtl.enroll = {};
+        seCtl.message = "enroll saved";
+      }
+
+      function errorCallback() {
+        seCtl.exeption = "save- error ";
       }
 
 

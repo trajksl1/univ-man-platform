@@ -1,0 +1,24 @@
+<div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="btn-group">
+                <button ng-repeat="es in caCtl.allSources"
+                        ng-click="caCtl.removeSource(es)"
+                        ng-style="es.style"
+                        type="button"
+                        class="btn btn-default">{{es.name}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div select="renderCalendar('myCalendar3');">
+
+        <div class="calendar top-buffer" calendar="myCalendar"
+             ui-calendar="caCtl.uiConfig.calendar"></div>
+
+    </div>
+
+
+</div>

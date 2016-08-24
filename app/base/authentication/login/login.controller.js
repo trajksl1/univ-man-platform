@@ -16,17 +16,23 @@
 
     function loginFn() {
       lCtl.error = null;
-      var user = UserService.findByUsername(lCtl.username);
-      console.log(user);
+      UserService.findByUsername(lCtl.username, successCallback, errorCallback);
 
+      function successCallback(user) {
 
-      if (user === null || user.pass !== lCtl.password) {
-        lCtl.error = "Invalid username or password";
-      } else {
-        $rootScope.user = user;
-        $sessionStorage.user = user;
-        $state.go('dashboard');
+        if (user === null || user.password !== lCtl.password) {
+          lCtl.error = "Invalid username or password";
+        } else {
+          $rootScope.user = user;
+          $sessionStorage.user = user;
+          $state.go('dashboard');
+        }
       }
+
+      function errorCallback() {
+        lCtl.error = "Invalid username or password";
+      }
+
 
       if (lCtl.remember === 'Remember') {
        $cookies.put()

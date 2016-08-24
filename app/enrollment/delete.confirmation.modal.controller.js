@@ -3,7 +3,7 @@
 
   angular
     .module('ump')
-    .controller('DeleteConfirmationModalController', DeleteConfirmationModalControllerFn);
+    .controller('DeleteEnrollmentConfirmationModalController', DeleteConfirmationModalControllerFn);
 
   DeleteConfirmationModalControllerFn.$inject = ['EnrollmentService', '$uibModalInstance', '$scope'];
 
@@ -11,10 +11,12 @@
   function DeleteConfirmationModalControllerFn(EnrollmentService, $uibModalInstance, $scope) {
     var cdCtl = this;
     cdCtl.deleteEnroll = deleteEnrollFn;
+    console.log('in controller');
 
 
     function deleteEnrollFn() {
-      EnrollmentService.deleteEnroll($scope.enroll);
+      console.log("modal delete fn");
+      EnrollmentService.deleteEnroll($scope.enroll.id);
       $uibModalInstance.close();
 
     }

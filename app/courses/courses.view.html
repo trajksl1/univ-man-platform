@@ -8,20 +8,20 @@
         </div>
 
 
-        <div class="form-group">
-            <label>Course Id</label>
-            <input type="text" class="form-control" placeholder="Course Id" ng-model="cCtl.course.id"
-                   style="width: 800px;" required/>
+        <!--<div class="form-group">-->
+            <!--<label>Course Id</label>-->
+            <!--<input type="text" class="form-control" placeholder="Course Id" ng-model="cCtl.course.id"-->
+                   <!--style="width: 800px;" required/>-->
 
-        </div>
+        <!--</div>-->
 
 
         <div class="form-group">
             <label>Course Prerequisites</label>
-            <ui-select multiple ng-model="cCtl.course.prerequisites" close-on-select="false" style="width: 800px;"
+            <ui-select ng-model="cCtl.course.prerequisite" style="width: 800px;"
                        title="Choose prerequisites ">
                 <ui-select-match placeholder="Select course prerequisites...">
-                    {{$item.name}} &lt;{{$item.id}}&gt;
+                    {{$select.selected.name}}
                 </ui-select-match>
                 <ui-select-choices
                         repeat="item in (cCtl.listOfCourses| filter:$select.search ) track by item.id "
@@ -43,7 +43,7 @@
                        close-on-select="false" style="width: 800px;"
                        title="Choose course professors " required>
                 <ui-select-match placeholder="Select course professors...">
-                    {{$item.id}}
+                    {{$item.lastName}} {{$item.name}}
                 </ui-select-match>
                 <ui-select-choices
                         repeat="item in (cCtl.listOfProfessors | filter:$select.search) track by item.id"
@@ -57,7 +57,6 @@
             </ui-select>
 
         </div>
-
         <button type="submit" ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> Save</button>
         <div class="btn btn-default top-buffer" ng-click="cCtl.cancelEdit()"> Cancel</div>
 
@@ -72,14 +71,12 @@
             <thead>
             <tr>
                 <th st-sort="name">Course Name</th>
-                <th st-sort="id">Course Id</th>
                 <th>Prerequisits</th>
                 <th>Professors</th>
                 <th>Actions</th>
             </tr>
             <tr>
                 <th><input st-search="name" class="form-control"/></th>
-                <th><input st-search="id" class="form-control"/></th>
                 <th><input st-search="cCtl.prerequisiteSearch" class="form-control"/></th>
                 <th></th>
                 <th></th>
@@ -88,13 +85,12 @@
 
             <tr ng-repeat="course in cCtl.displayed">
                 <td>{{course.name}}</td>
-                <td>{{course.id}}</td>
                 <td>
-                    <div ng-repeat="item in course.prerequisites"> {{item.name}}</div>
+                    {{course.prerequisite.name}}
                 </td>
 
                 <td>
-                    <div ng-repeat="item in course.professors"> {{item.lastName}}</div>
+                    <div ng-repeat="item in course.professors"> - {{item.lastName}} {{item.name}}</div>
                 </td>
                 <td>
                     <button type="button" class="btn btn-default btn-xs" ng-click="cCtl.courseUpdate(course)">Edit

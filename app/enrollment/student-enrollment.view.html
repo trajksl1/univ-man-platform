@@ -22,10 +22,10 @@
 
         <div>
             <label>Professor</label>
-            <ui-select ng-model="seCtl.enroll.courseProfessors">
+            <ui-select ng-model="seCtl.enroll.professor">
 
                 <ui-select-match>
-                    [{{$select.selected.id}}]
+                    {{$select.selected.lastName}}
                 </ui-select-match>
 
                 <ui-select-choices repeat="item in ( seCtl.enroll.course.professors | filter: $select.search)">
@@ -55,7 +55,7 @@
             <thead>
             <tr>
                 <th st-sort="course.name">Course</th>
-                <th st-sort="courseProfessors">SurName</th>
+                <th st-sort="professor.name">Professor</th>
                 <th st-sort="grade">Grade</th>
                 <th>Action</th>
 
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <th><input st-search="course" class="form-control"/></th>
-                <th><input st-search="courseProfessors" class="form-control"/></th>
+                <th><input st-search="professor.name" class="form-control"/></th>
                 <th><input st-search="grade" class="form-control"/></th>
                 <th></th>
             </tr>
@@ -72,9 +72,9 @@
             <tr ng-repeat="enroll in seCtl.displayed">
                 <td>{{enroll.course.name}}</td>
                 <td><!--{{enroll.courseProfessors.lastName}}-->
-                    <div ng-bind-html="enroll.courseProfessors.lastName "></div>
+                    <div ng-bind-html="enroll.professor.lastName"></div>
                     <small>
-                        {{enroll.courseProfessors.name}}
+                        {{enroll.professor.name}}
                     </small>
 
                 </td>
@@ -82,7 +82,8 @@
                 <td>
                     <button type="button" class="btn btn-default btn-xs" ng-click="seCtl.openGradeModal(enroll)">Grade
                     </button>
-                    <button type="button" class="btn btn-danger btn-xs" ng-click="seCtl.openConfirmationModal(enroll)">
+                    <button type="button" class="btn btn-danger btn-xs"
+                            ng-click="seCtl.openConfirmationModal(enroll)">
                         Delete
                     </button>
 

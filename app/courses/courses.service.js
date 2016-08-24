@@ -3,7 +3,7 @@
 
   angular
     .module('ump')
-    .factory('CourseService', CourseServiceFn);
+    .factory('CourseLocalService', CourseServiceFn);
 
   CourseServiceFn.$inject = ['$localStorage', '$filter'];
 
@@ -15,7 +15,6 @@
       getPaged: getPagedFn,
       findCourse: findCourseFn,
       deleteCourse: deleteCourseFn,
-      
 
 
     };
@@ -77,6 +76,7 @@
     }
 
     function adUpdateCourseFn(item) {
+      
       initStageFn();
       var course = findCourseFn(item.id);
       if (course === null) {

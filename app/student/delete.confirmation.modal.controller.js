@@ -11,10 +11,11 @@
   function DeleteConfirmationModalControllerFn(StudentService, $uibModalInstance, $scope) {
     var cdCtl = this;
     cdCtl.deleteStudent = deleteStudentFn;
-    console.log($scope.student);
+  
 
     function deleteStudentFn() {
-      StudentService.deleteStudent($scope.student);
+      StudentService.deleteStudent($scope.student.id);
+
       $uibModalInstance.close();
 
     }

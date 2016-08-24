@@ -21,7 +21,8 @@ var JS_APP = [
   'app/enrollment/**/*.js',
   'app/professor/**/*.js',
   'app/student/**/*.js',
-  'app/users/**/*.js'
+  'app/users/**/*.js',
+  'app/calendar-exemple/**/*.js'
 ];
 
 var TEMPLATES_SRC = [
@@ -39,7 +40,7 @@ var FONTS_LIB = [
   'bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2',
   'bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff'
 
-]
+];
 
 var CSS_LIB = [
   'bower_components/bootstrap/dist/css/bootstrap.css',
@@ -55,7 +56,9 @@ var CSS_LIB = [
   'bower_components/angular-xeditable/dist/css/xeditable.css',
   'bower_components/angular-ui-select/dist/select.css',
   'bower_components/angular-ui-grid/ui-grid.css',
-  'bower_components/angular-bootstrap/ui-bootstrap-csp.css'
+  'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+  'bower_components/fullcalendar/dist/fullcalendar.css'
+
 ];
 
 
@@ -98,7 +101,10 @@ var JS_LIB = [
   'bower_components/angular-bootstrap/ui-bootstrap.js',
   'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
   'bower_components/angular-cookies/angular-cookies.js',
-  'bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js'
+  'bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js',
+  'bower_components/angular-ui-calendar/src/calendar.js',
+  'bower_components/fullcalendar/dist/fullcalendar.min.js',
+  'bower_components/fullcalendar/dist/gcal.js'
 ];
 
 
@@ -120,7 +126,7 @@ var MODULE_NAME = 'ump';
 /**
  * The URL of the back-end API
  */
-var API_URL = 'http://localhost:8080/servlet-showcase/api';
+var API_URL = 'http://localhost:8080/api';
 /**
  * Route to which the API calls will be mapped
  */

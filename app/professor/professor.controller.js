@@ -18,17 +18,34 @@
     pCtl.professorDelete = professorDeleteFn;
     pCtl.ListOfProfessors = ProfessorService.getAllProfessors;
     pCtl.isEdit = false;
-    
 
 
     function addProfessorFn() {
-      var item = pCtl.professor;
-      pCtl.ListOfProfessors = ProfessorService.addUpdateProfessor(item);
-      pCtl.item = {};
-      pCtl.isEdit = false;
-      pCtl.callServer(pCtl.tableCtl.tableState(), pCtl.tableCtl);
+      try {
+
+        pCtl.message = null;
+        pCtl.exeption = null;
+        ProfessorService.addUpdateProfessor(pCtl.professor, successCallBack, errorCallback);
+      }
+      catch (ex) {
+        pCtl.exeption = ex.message;
+
+      }
 
     }
+
+    function successCallBack() {
+      pCtl.callServer(pCtl.tableCtl.tableState(), pCtl.tableCtl);
+      pCtl.professor = {};
+      pCtl.message = "Professor saved";
+
+
+    }
+
+    function errorCallback() {
+      pCtl.exeption = 'Save Error!';
+    }
+
 
     function cancelEditFn() {
       pCtl.professor = {};
@@ -42,36 +59,32 @@
       var pagination = tableState.pagination;
 
       var start = pagination.start || 0;
-      var number = pagination.number || 10;
+      var number = pagination.number || 1000;
 
-      var result = ProfessorService.getPaged(
-        start,
-        number,
-        tableState.search.predicateObject,
-        tableState.sort.predicate,
-        tableState.sort.reverse
-      );
+      var result = ProfessorService.getAllProfessors();
 
-      pCtl.displayed = result.data;
-      tableState.pagination.numberOfPages = result.numberOfPages;
+      pCtl.displayed = result;
+      tableState.pagination.numberOfPages = 1;
     }
 
 
     function professorUpdateFn(newProf) {
-      pCtl.isEdit = true;
+
       pCtl.professor = {
+        userName: newProf.userName,
         name: newProf.name,
         lastName: newProf.lastName,
         id: newProf.id
-      }
-      ;
+      };
 
 
     }
 
     function professorDeleteFn(professor) {
-      pCtl.ListOfProfessors = ProfessorService.deleteProfessor(pCtl.professor);
-      return pCtl.ListOfProfessors;
+      ProfessorService.deleteProfessor(professor.id, function () {
+        pCtl.callServer(pCtl.tableCtl.tableState(), pCtl.tableCtl);
+      });
+
 
     }
 

@@ -16,7 +16,7 @@
 
 
     function addGradeFn() {
-      EnrollmentService.addGrade($scope.enroll, gCtl.grade);
+      EnrollmentService.addGrade($scope.enroll.id, gCtl.grade);
       $uibModalInstance.close();
 
     }

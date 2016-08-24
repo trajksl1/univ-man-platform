@@ -3,7 +3,7 @@
 
   angular
     .module('ump')
-    .factory('ProfessorService', ProfessorServiceFn);
+    .factory('ProfessorLocalService', ProfessorServiceFn);
 
   ProfessorServiceFn.$inject = ['$localStorage', '$filter'];
 

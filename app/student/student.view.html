@@ -1,5 +1,5 @@
 <div>
-    <form name='frm' ng-submit="sCtl.addStudent() ">
+    <form name='frm'>
 
         <div class="form-group">
             <label>{{'student.name' | translate}}</label>
@@ -17,7 +17,9 @@
                    ng-model="sCtl.student.index" required/>
         </div>
 
-        <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer"> {{'student.Save' | translate}}</button>
+        <button ng-disabled='frm.$invalid' class="btn btn-primary top-buffer" ng-click="sCtl.addStudent()">
+            {{'student.Save' | translate}}
+        </button>
         <div class="btn btn-default top-buffer" ng-click="sCtl.cancelEdit()"> {{'student.Cancel' | translate}}</div>
 
 
@@ -57,7 +59,7 @@
                         {{'student.Delete' | translate}}
                     </button>
                     <a class="btn btn-default btn-xs"
-                       ui-sref="studentEnrollment({ studentId: student.index })">
+                       ui-sref="studentEnrollment({ studentId: student.id })">
                         {{'student.Enroll' | translate}}
                     </a>
 

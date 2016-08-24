@@ -13,7 +13,6 @@
     cCtl.title = 'Course Controller';
     cCtl.addCourse = addCourseFn;
     cCtl.listOfCourses = CourseService.getAllCourses();
-    console.log(cCtl.listOfCourses);
     cCtl.listOfProfessors = ProfessorService.getAllProfessors();
     cCtl.cancelEdit = cancelEditFn;
     cCtl.displayed = [];
@@ -25,12 +24,27 @@
 
 
     function addCourseFn() {
-      var result = cCtl.course;
-      CourseService.adUpdateCourse(result);
+
+      try {
+        cCtl.exeption = null;
+        cCtl.message = null;
+        console.log('controller add')
+        CourseService.addUpdateCourse(cCtl.course, successCallback, failureCallback);
+
+      }
+      catch (ex) {
+        cCtl.exeption = ex.message;
+      }
+    }
+
+    function successCallback() {
+      callServerFn(cCtl.tableCtl.tableState(), cCtl.tableCtl);
       cCtl.course = {};
-      cCtl.callServer(cCtl.tableCtl.tableState(), cCtl.tableCtl);
+      cCtl.message = "The course is saved successfully :)"
+    }
 
-
+    function failureCallback() {
+      cCtl.exception = 'Save error!';
     }
 
     function cancelEditFn() {
@@ -43,25 +57,19 @@
       var pagination = tableState.pagination;
 
       var start = pagination.start || 0;
-      var number = pagination.number || 10;
+      var number = pagination.number || 1000;
 
-      var result = CourseService.getPaged(
-        start,
-        number,
-        tableState.search.predicateObject,
-        tableState.sort.predicate,
-        tableState.sort.reverse
-      );
+      var result = CourseService.getAllCourses();
 
-      cCtl.displayed = result.data;
-      tableState.pagination.numberOfPages = result.numberOfPages;
+      cCtl.displayed = result;
+      tableState.pagination.numberOfPages = 1;
     }
 
     function courseUpdateFn(item) {
       cCtl.course = {
         name: item.name,
         id: item.id,
-        prerequisites: item.prerequisites,
+        prerequisite: item.prerequisite,
         professors: item.professors
 
       };
@@ -69,7 +77,7 @@
     }
 
     function courseDeleteFn(course) {
-      cCtl.ListOfCourse = CourseService.deleteCourse(course);
+      cCtl.ListOfCourse = CourseService.deleteCourse(course.id);
       console.log('controller deletefn');
       console.log(cCtl.ListOfCourse);
       cCtl.callServer(cCtl.tableCtl.tableState(), cCtl.tableCtl);

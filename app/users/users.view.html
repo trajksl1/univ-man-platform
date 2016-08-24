@@ -10,7 +10,7 @@
             <label class="col-sm-2 control-label">UserName</label>
             <div class="col-sm-10">
                 <input type="text"
-                       ng-disabled="aCtl.user.$saved"
+                       ng-disabled="aCtl.user.id"
                        class="form-control" placeholder="UserName" ng-model="aCtl.user.username">
             </div>
         </div>
@@ -18,16 +18,16 @@
             <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
-                       ng-model="aCtl.user.pass">
+                       ng-model="aCtl.user.password">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Role</label>
             <label class="radio-inline">
-                <input type="radio" name="option" ng-model="aCtl.user.role" value="Student"> Student
+                <input type="radio" name="option" ng-model="aCtl.user.userType" value="STUDENT"> Student
             </label>
             <label class="radio-inline">
-                <input type="radio" name="option" ng-model="aCtl.user.role" value="Professor"> Professor
+                <input type="radio" name="option" ng-model="aCtl.user.userType" value="PROFESSOR"> Professor
             </label>
         </div>
         <div class="form-group" ng-if="aCtl.subjects">
@@ -71,7 +71,7 @@
             </thead>
             <tr ng-repeat="user in aCtl.displayed">
                 <td>{{user.username}}</td>
-                <td>{{user.role}}</td>
+                <td>{{user.userType}}</td>
                 <td>{{user.subject.name}} {{user.subject.lastName}}</td>
                 <td>
                     <button type="button" class="btn btn-default btn-xs" ng-click="aCtl.editUser(user)">
